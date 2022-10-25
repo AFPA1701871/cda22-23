@@ -1,9 +1,9 @@
 <?php
 
 //$tab = CreerTableau(2,3);
-$tab = [[1, 2, 3], [4, 5, 6]];
-//print_r($tab);
-AfficheTableau($tab);
+// $tab = [[1, 2, 3], [4, 5, 6]];
+// //print_r($tab);
+// AfficheTableau($tab);
 //AfficherGrille($tab);
 
 function SaisieEntier($invite)
