@@ -1,5 +1,5 @@
 <?php
-class Triangle
+class Triangles
 {
 
     /*****************Attributs***************** */
@@ -53,7 +53,7 @@ class Triangle
      *
      * @return String
      */
-    public function toString()
+    public function __toString()
     {
         return "Base : ".$this->getBase().", Hauteur : ".$this->getHauteur().", Perimetre : ".$this->perimetre(). " Aire : ".$this->aire();
     }
@@ -84,13 +84,16 @@ class Triangle
     }
     public function perimetre()
     {
-        $c = sqrt(pow($this->getBase(), 2) + pow($this->getHauteur(), 2));
-        $perimetre = $this->getBase() +$this->getHauteur() + $c;
-        return $perimetre;
+        $hypothenuse = sqrt( //racine
+                        pow($this->getHauteur(),2)+ // hauteur²
+                        pow($this->getBase(),2) // base²
+                    );
+        return $this->getHauteur()+$this->getBase()+$hypothenuse;
     }
     public function aire()
     {
-        return $this->getBase() * $this->getHauteur() /2; 
-    }
+        return $this->getHauteur()*$this->getBase()/2;
+ 
+   }
     
 }

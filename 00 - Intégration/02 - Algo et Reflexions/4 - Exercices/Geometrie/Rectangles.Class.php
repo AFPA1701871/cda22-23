@@ -1,5 +1,5 @@
 <?php
-class Rectangle
+class Rectangles
 {
 
     /*****************Attributs***************** */
@@ -55,7 +55,7 @@ class Rectangle
      *
      * @return String
      */
-    public function toString()
+    public function __toString()
     {
         $reponse =  "Longueur : " . $this->getLongueur() . " - Largeur : " . $this->getLargeur() . " - Périmètre : " . $this->perimetre() . " - Aire : " . $this->aire() . " - ";
         
@@ -69,7 +69,7 @@ class Rectangle
      */
     public function perimetre()
     {
-        return ($this->getLongueur() + $this->getLargeur()) * 2;
+        return ($this->getLongueur()+$this->getLargeur())*2;
     }
     /**
      * Retourne l'aire du rectangle
@@ -77,8 +77,8 @@ class Rectangle
      * @return int
      */
     public function aire()
-    {
-        return ($this->getLongueur() * $this->getLargeur());
+    {      return ($this->getLongueur()*$this->getLargeur());
+  
     }
     /**
      * renvoi vrai si le rectangle est un carré
@@ -86,8 +86,8 @@ class Rectangle
      * @return void
      */
     public function estCarre()
-    {
-        return ($this->getLongueur() == $this->getLargeur());
+    {      return $this->getLongueur()==$this->getLargeur();
+  
     }
     /**
      * Affiche les propriétés du rectangle
@@ -96,6 +96,5 @@ class Rectangle
      */
     public function AfficherRectangle()
     {
-        echo $this->toString();
     }
 }

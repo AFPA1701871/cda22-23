@@ -1,6 +1,6 @@
 <?php
 
-class Sphere extends Cercle
+class Spheres extends Cercles
 {
 
     /*****************Attributs***************** */
@@ -13,7 +13,7 @@ class Sphere extends Cercle
 
     public function __construct(array $options = [])
     {
-        parent::__construct($options);
+       // parent::__construct($options);   Appel optionnel
         if (!empty($options)) // empty : renvoi vrai si le tableau est vide
         {
             $this->hydrate($options);
@@ -38,9 +38,9 @@ class Sphere extends Cercle
      *
      * @return String
      */
-    public function toString()
+    public function __toString()
     {
-        return parent::toString()." - Volume de la sphère : ".$this->volumeSphere();
+        return parent::__toString()." - Volume de la sphère : ".$this->volume();
     }
 
     /**
@@ -49,14 +49,8 @@ class Sphere extends Cercle
      * @param Void
      * @return Float
      */
-    public function volumeSphere()
+    public function volume()
     {       // 4/3 PI R3
-        return number_format(((pow(parent::getDiametre()/2,3)*pi()*4)/3),2);
+        return 4/3*pi()*pow($this->getRayon(),3);
     }
-
-    public function perimetre()
-    {
-        return parent::aire()*4;
-    }
-    
 }

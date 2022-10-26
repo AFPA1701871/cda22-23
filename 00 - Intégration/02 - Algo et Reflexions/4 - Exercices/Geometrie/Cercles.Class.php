@@ -1,10 +1,11 @@
 <?php
 
-class Cercle
+class Cercles
 {
 
     /*****************Attributs***************** */
     private $_diametre;
+    private $_rayon;
 
     /*****************Accesseurs***************** */
     public function getDiametre()
@@ -15,8 +16,12 @@ class Cercle
     public function setDiametre($diametre)
     {
         $this->_diametre = $diametre;
+        $this->_rayon = $diametre/2;
     }
-    
+    protected function getRayon()
+    {
+        return $this->_rayon;
+    }
     /*****************Constructeur***************** */
 
     public function __construct(array $options = [])
@@ -45,7 +50,7 @@ class Cercle
      *
      * @return String
      */
-    public function toString()
+    public function __toString()
     {
         return "\nDiametre :".$this->getDiametre()."\tRayon :".($this->getDiametre()/2)."\tPerimetre :".$this->perimetre()."\tAire :".$this->aire();
     }
@@ -77,12 +82,18 @@ class Cercle
 
     public function perimetre()
     {   //pi D
-        return pi()*$this->getDiametre();
-    }
+        return pi() *$this->getDiametre();
+     }
 
     public function aire()
     {   //pi R²
-        return pi()*(pow($this->getDiametre()/2,2));
+        // 1ere technique
+        return pi() *pow(($this->getDiametre()/2),2);
+        //2eme technique 
+        return pi() *pow($this->getRayon(),2);
+        
     }
     
+
+   
 }

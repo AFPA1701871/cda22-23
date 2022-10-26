@@ -1,29 +1,29 @@
 <?php
 
-class Pyramide extends Triangle
+class Pyramides extends Triangles
 {
 
 	/*****************Attributs***************** */
 
-	private $_haut;
+	private $_profondeur;
 
 	/*****************Accesseurs***************** */
 
-	public function getHaut()
+	public function getProfondeur()
 	{
-		return $this->_haut;
+		return $this->_profondeur;
 	}
 
-	public function setHaut($haut)
+	public function setProfondeur($profondeur)
 	{
-		$this->_haut = $haut;
+		$this->_profondeur = $profondeur;
 	}
 	
 	/*****************Constructeur***************** */
 
 	public function __construct(array $options = [])
 	{
-		parent::__construct($options);
+		//parent::__construct($options); appel optionnel
 		if (!empty($options)) // empty : renvoi vrai si le tableau est vide
 		{
 			$this->hydrate($options);
@@ -48,10 +48,9 @@ class Pyramide extends Triangle
 	*
 	* @return String.
 	*/
-	public function toString()
+	public function __toString()
 	{
-		return parent::toString()."\n Hauteur : ".$this->getHaut()."\nPérimètre :".$this->perimetre()."\n"
-		."Volume :".$this->volume()."\n";
+		return parent::__toString()."\n profondeur : ".$this->getProfondeur()."\nPérimètre :".$this->perimetre()."\n"."Volume :".$this->volume()."\n";
 	}
 	/**
 	* Renvoi vrai si l'objet en paramètre est égal à l'objet appelant
@@ -67,13 +66,12 @@ class Pyramide extends Triangle
 
 	public function perimetre()//Calcul du périmètre
 	{
-		$cote1=sqrt(pow($this->getHauteur(),2)+pow($this->getHaut(),2));
-		$cote2=sqrt(pow($this->getBase(),2)+pow($this->getHaut(),2));
-		return (parent::perimetre()+$this->getHaut()+$cote1+$cote2);
+		return parent::perimetre()*2+$this->getProfondeur()*3;
 	}
 
 	public function volume() //Calcul du volume
 	{
-		return (parent::aire()*$this->getHaut()/3);
+		//return $this->aire()*$this->getProfondeur(); // les 2 écritures fonctionnent
+		return parent::aire()*$this->getProfondeur();
 	}
 }
