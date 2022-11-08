@@ -18,6 +18,7 @@ function deplace(dx, dy) {
 }
 
 function depl_ok(tob, lob, wob, hob, t, l, w, h) {
+    // formule de détection des collisions
    if (l < lob + wob && l + w > lob && t < tob + hob && t + h > tob) {
         return false
     }

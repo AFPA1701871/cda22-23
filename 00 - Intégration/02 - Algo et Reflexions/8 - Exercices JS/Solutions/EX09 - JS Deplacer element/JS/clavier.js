@@ -14,19 +14,19 @@ function deplace(dleft, dtop) {
 
 document.addEventListener("keydown",function(event) {
     var event = event || window.event, // pour la compatibilite avec tous les navigateurs
-        keyCode = event.keyCode;
+        keyCode = event.code;
     // On détecte l'événement puis selon la fleche, on appelle deplace
     switch (keyCode) {
-        case 38:
+        case "ArrowUp":
             deplace(0, -5);
             break;
-        case 40:
+        case "ArrowDown":
             deplace(0, 5);
             break;
-        case 37:
+        case "ArrowLeft":
             deplace(-5, 0);
             break;
-        case 39:
+        case "ArrowRight":
             deplace(5, 0);
             break;
     }
