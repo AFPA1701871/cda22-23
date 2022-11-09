@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <title>Document</title>
+</head>
+
+<body>
+    <form action="" method="post">
+        <div>
+            <label for="nom">Nom : </label>
+            <input type="text" name="nom" id="nom" pattern="^[A-Z]+$"  class="" value=""
+                placeholder="Entrer le nom" title="en majuscule" />
+            <div class="message"></div>
+        </div>
+        <br>
+        <div>
+            <label for="prenom">Prenom : </label>
+            <input type="text" name="prenom" id="prenom" pattern="^[a-z]+$" required class="" value=""
+                placeholder="Entrer le prenom" title="en minuscule" />
+            <div class="message"></div>
+        </div>
+        <br>
+        <div>
+            <label for="age">age : </label>
+            <input type="number" name="age" id="age"  required class="" value=""     min =0 max=100 step="1"            placeholder="Entrer l age" title="entre 0 et 100" />
+            <div class="message"></div>
+        </div>
+    </form>
+    <script src="script.js"></script>
+</body>
+
+</html>
