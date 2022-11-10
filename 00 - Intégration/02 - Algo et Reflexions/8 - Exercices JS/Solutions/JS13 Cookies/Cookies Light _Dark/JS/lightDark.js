@@ -1,5 +1,5 @@
 
-separateur = ","
+separateur = QuelNavigateur()=="firefox"?",":";"
 var monRange = document.getElementsByTagName('input')[0];
 monRange.addEventListener("change", function () {
     changeCouleur(monRange.value);
@@ -53,4 +53,30 @@ function readCookie(name) {
 function eraseCookie(name) {
     // pour supprimer un cookie, on le périme
     createCookie(name, "", -1);
+}
+function QuelNavigateur() {
+    var ua = navigator.userAgent;
+    var x = ua.indexOf("MSIE");
+    var navig = "MSIE";
+    if (x == -1) {
+        x = ua.indexOf("Firefox");
+        navig = "Firefox";
+        if (x == -1) {
+            x = ua.indexOf("OPR");
+            navig = "Opéra";
+			if (x == -1) {
+            x = ua.indexOf("EDG");
+            navig = "Edge";
+            if (x == -1) {
+                x = ua.indexOf("Chrome");
+                navig = "Chrome";
+                if (x == -1) {
+                    x = ua.indexOf("Safari");
+                    navig = "Safari"
+                }
+            }
+        }
+    }
+    return navig;
+}
 }
