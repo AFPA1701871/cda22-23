@@ -99,3 +99,22 @@ CREATE TABLE Participations(
 -- constraintes clés étrangères
 ALTER TABLE Participations ADD CONSTRAINT FK_Participations_Joueurs FOREIGN KEY(idJoueur) REFERENCES Joueurs(idJoueur);
 ALTER TABLE Participations ADD CONSTRAINT FK_Participations_Equipes FOREIGN KEY(idEquipe) REFERENCES Equipes(idEquipe);
+
+
+--Vider la table
+Truncate Joueurs;
+
+-- relation récursive
+CREATE TABLE JoueursRecurs(
+   idJoueur INT AUTO_INCREMENT PRIMARY KEY,
+   nomJoueur VARCHAR(100) ,
+   dirigeant INT COMMENT "contient un idJoueur"
+  
+);
+
+ ALTER TABLE JoueursRecurs ADD CONSTRAINT FK_Joueurs_Joueurs FOREIGN KEY(dirigeant) REFERENCES JoueursRecurs(idJoueur);
+
+ -- Gestion des droits
+ ALTER TABLE `equipes` 
+    ADD `dateCreation` DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP , 
+    ADD `dateModification` DATETIME on update CURRENT_TIMESTAMP NULL DEFAULT NULL;
