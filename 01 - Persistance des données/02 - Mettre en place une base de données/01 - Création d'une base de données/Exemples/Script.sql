@@ -9,3 +9,93 @@ CREATE TABLE Utilisateurs(
    email VARCHAR(50) NOT NULL UNIQUE
 );
 ALTER TABLE Utilisateurs ADD COLUMN prenom VARCHAR(50) AFTER nomUtilisateur;
+
+-- relation 0.1 - 1.1
+-- 
+-- Table Joueurs
+--
+CREATE TABLE Joueurs(
+   idJoueur INT AUTO_INCREMENT PRIMARY KEY,
+   nomJoueur VARCHAR(100) 
+) ENGINE=InnoDB;
+
+-- 
+-- Table Equipes
+--
+CREATE TABLE Equipes(
+   idEquipe INT AUTO_INCREMENT PRIMARY KEY,
+   nomEquipe VARCHAR(100) ,
+   idJoueur INT NOT NULL UNIQUE
+)ENGINE=InnoDB;
+
+ALTER TABLE equipes ADD CONSTRAINT FK_Equipes_Joueurs FOREIGN KEY (idJoueur) REFERENCES joueurs(idJoueur);
+
+-- relation 0.1 - 1.n
+DROP TABLE Equipes, Joueurs;
+CREATE TABLE Equipes(
+   idEquipe INT AUTO_INCREMENT PRIMARY KEY,
+   nomEquipe VARCHAR(100) 
+)ENGINE=InnoDB;
+
+-- 
+-- Table Joueurs
+--
+CREATE TABLE Joueurs(
+   idJoueur INT AUTO_INCREMENT PRIMARY KEY,
+   nomJoueur VARCHAR(100) ,
+   idEquipe INT
+)ENGINE=InnoDB;
+
+ALTER TABLE Joueurs ADD CONSTRAINT FK_Joueurs_Equipes FOREIGN KEY(idEquipe) REFERENCES Equipes(idEquipe);
+
+-- 2 relations 
+DROP TABLE Equipes, Joueurs;
+CREATE TABLE Equipes(
+   idEquipe INT AUTO_INCREMENT PRIMARY KEY,
+   nomEquipe VARCHAR(100),
+   idJoueur INT 
+)ENGINE=InnoDB;
+
+-- 
+-- Table Joueurs
+--
+CREATE TABLE Joueurs(
+   idJoueur INT AUTO_INCREMENT PRIMARY KEY,
+   nomJoueur VARCHAR(100) ,
+   idEquipe INT
+)ENGINE=InnoDB;
+
+ALTER TABLE Joueurs ADD CONSTRAINT FK_Joueurs_Equipes FOREIGN KEY(idEquipe) REFERENCES Equipes(idEquipe);
+ALTER TABLE Equipes ADD CONSTRAINT FK_Equipes_Joueurs FOREIGN KEY (idJoueur) REFERENCES Joueurs(idJoueur);
+
+--table associative
+DROP DATABASE Test;
+CREATE DATABASE IF NOT EXISTS test;
+USE test;
+-- Table Joueurs
+--
+CREATE TABLE Joueurs(
+   idJoueur INT AUTO_INCREMENT PRIMARY KEY,
+   nomJoueur VARCHAR(100) 
+)ENGINE=InnoDB;
+
+-- 
+-- Table Equipes
+--
+CREATE TABLE Equipes(
+   idEquipe INT AUTO_INCREMENT PRIMARY KEY,
+   nomEquipe VARCHAR(100) 
+)ENGINE=InnoDB;
+
+-- e
+-- Table Participations
+--
+CREATE TABLE Participations(
+    idParticipation INT AUTO_INCREMENT PRIMARY KEY,
+   idJoueur INT,
+   idEquipe INT
+)ENGINE=InnoDB;
+
+-- constraintes clés étrangères
+ALTER TABLE Participations ADD CONSTRAINT FK_Participations_Joueurs FOREIGN KEY(idJoueur) REFERENCES Joueurs(idJoueur);
+ALTER TABLE Participations ADD CONSTRAINT FK_Participations_Equipes FOREIGN KEY(idEquipe) REFERENCES Equipes(idEquipe);
