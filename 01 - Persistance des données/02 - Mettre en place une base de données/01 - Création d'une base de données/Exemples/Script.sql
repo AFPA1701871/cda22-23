@@ -48,7 +48,7 @@ CREATE TABLE Joueurs(
 
 ALTER TABLE Joueurs ADD CONSTRAINT FK_Joueurs_Equipes FOREIGN KEY(idEquipe) REFERENCES Equipes(idEquipe);
 
--- 2 relations 
+-- 2 relations (dirige et participe)
 DROP TABLE Equipes, Joueurs;
 CREATE TABLE Equipes(
    idEquipe INT AUTO_INCREMENT PRIMARY KEY,
@@ -87,11 +87,21 @@ CREATE TABLE Equipes(
    nomEquipe VARCHAR(100) 
 )ENGINE=InnoDB;
 
--- e
+-- 
 -- Table Participations
 --
+-- AVANT
+-- CREATE TABLE Participations(
+--    idJoueur INT,
+--    idEquipe INT,
+--    PRIMARY KEY(idJoueur, idEquipe),
+--    FOREIGN KEY(idJoueur) REFERENCES Joueurs(idJoueur),
+--    FOREIGN KEY(idEquipe) REFERENCES Equipes(idEquipe)
+-- );
+
+
 CREATE TABLE Participations(
-    idParticipation INT AUTO_INCREMENT PRIMARY KEY,
+   idParticipation INT AUTO_INCREMENT PRIMARY KEY,
    idJoueur INT,
    idEquipe INT
 )ENGINE=InnoDB;
