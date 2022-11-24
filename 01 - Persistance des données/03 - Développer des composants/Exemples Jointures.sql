@@ -28,3 +28,22 @@ SELECT cl.nomClient,
 FROM commandes as co
 INNER JOIN clients as cl ON co.idClient = cl.idClient
 INNER JOIN articles as a ON co.idArticle = a.idArticle
+
+-- solution sans inner join
+SELECT
+    cl.nomClient,
+    cl.prenomClient,
+    cl.idClient,
+    co.idCommande,
+    co.idClient,
+    co.idArticle,
+    co.dateCommande,
+    co.quantiteCommande,
+    a.descriptionArticle,
+    a.prixArticle
+FROM
+    clients AS cl,
+    commandes AS co,
+    articles AS a
+WHERE
+    cl.idClient = co.idClient AND co.idarticle = a.idArticle
