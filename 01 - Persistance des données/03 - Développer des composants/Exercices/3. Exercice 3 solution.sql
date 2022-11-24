@@ -76,6 +76,12 @@ INSERT INTO avoir_note VALUES(NULL,
         FROM avoir_note as anote
         WHERE anote.idEpreuve = 4)
     );
+ou
+START TRANSACTION;
+SELECT @newNote:=ROUND(AVG(note),2)*0.9 FROM Avoir_note WHERE idEpreuve = 4;
+SELECT @newID:=idEtudiant FROM Etudiants WHERE UPPER(nomEtudiant)="DEWA";
+INSERT INTO Avoir_note (idEtudiant, idEpreuve, note) VALUES (@newID, 4, @newNote);
+COMMIT;
 P)Insérez un nouvel étudiant dont vous ne connaissez que le numéro, le nom, le prénom, le hobby et
 l''année: 25, 'DARTE','REMY','SCULPTURE',1.
 INSERT INTO etudiants (idEtudiant,`nomEtudiant`,`prenomEtudiant`,`hobbyEtudiant`,`anneeEtudiant`)

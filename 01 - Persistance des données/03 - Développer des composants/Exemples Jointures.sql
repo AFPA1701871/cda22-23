@@ -47,3 +47,48 @@ FROM
     articles AS a
 WHERE
     cl.idClient = co.idClient AND co.idarticle = a.idArticle
+
+
+    -- equivalence entre 2 innerjoin
+    SELECT e.nomEtudiant,a.note
+FROM `avoir_note` as a
+INNER JOIN etudiants as e ON e.idEtudiant=a.idEtudiant
+ORDER BY nomEtudiant;
+
+
+SELECT e.nomEtudiant,a.note
+FROM etudiants as e
+INNER JOIN `avoir_note` as a ON e.idEtudiant=a.idEtudiant
+ORDER BY nomEtudiant;
+
+-- TOUS les etudiants et leur moyenne
+SELECT e.nomEtudiant, AVG(a.note)
+FROM etudiants as e
+LEFT JOIN `avoir_note` as a ON e.idEtudiant=a.idEtudiant
+GROUP BY e.idEtudiant
+ORDER BY nomEtudiant
+
+SELECT e.nomEtudiant,AVG(a.note)
+FROM `avoir_note` as a
+RIGHT JOIN etudiants as e ON e.idEtudiant=a.idEtudiant
+GROUP BY e.idEtudiant
+ORDER BY nomEtudiant;
+
+
+--limiter les resultats (les 2 premiers)
+SELECT e.nomEtudiant,ep.libelleEpreuve, AVG(a.note)
+FROM etudiants as e
+LEFT JOIN `avoir_note` as a ON e.idEtudiant=a.idEtudiant
+LEFT JOIN epreuves as ep ON ep.idEpreuve = a.idEpreuve
+GROUP BY e.idEtudiant
+ORDER BY nomEtudiant
+limit 2;
+-- 2 a partir de 3
+SELECT e.nomEtudiant,ep.libelleEpreuve, AVG(a.note)
+FROM etudiants as e
+LEFT JOIN `avoir_note` as a ON e.idEtudiant=a.idEtudiant
+LEFT JOIN epreuves as ep ON ep.idEpreuve = a.idEpreuve
+GROUP BY e.idEtudiant
+ORDER BY nomEtudiant
+limit 2
+offset 3;
