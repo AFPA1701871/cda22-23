@@ -19,6 +19,11 @@ D) Afficher le nombre de commandes qui ont été passées.
 SELECT COUNT(*) FROM `commandes`;
 E) Afficher le montant moyen de commande par client
 SELECT cl.`NomClient`, cl.`PrenomClient`, ROUND(AVG(co.`cde_total`), 2) AS "montant moyen de commande" FROM `commandes` AS co INNER JOIN `clients` AS cl ON co.idClient = cl.idClient GROUP BY co.idClient;
+SELECT cl.`NomClient`, cl.`PrenomClient`, ROUND(AVG(co.quantiteCommande*a.prixArticle), 2) AS "montant moyen de commande" 
+FROM `commandes` AS co 
+INNER JOIN `clients` AS cl ON co.idClient = cl.idClient 
+INNER JOIN articles as a ON co.idArticle = a.idArticle
+GROUP BY co.idClient;
 SELECT cl.`NomClient`, cl.`PrenomClient`, ROUND(AVG(co.`cde_total`), 2) AS "montant moyen de commande" FROM `commandes` AS co, `clients` AS cl WHERE co.idClient = cl.idClient GROUP BY co.idClient;
 F) Afficher le montant le plus élevé de commande par client.
 SELECT cl.`NomClient`, cl.`PrenomClient`, MAX(co.`cde_total`) AS "montant le plus élevé " FROM `commandes` AS co INNER JOIN `clients` AS cl ON co.idClient = cl.idClient GROUP BY co.idClient;
