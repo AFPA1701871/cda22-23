@@ -18,7 +18,7 @@ SELECT  `titre` FROM `employe`
 
 SELECT DISTINCT `titre` FROM `employe`
 
--- 6 Afficher les différentes valeurs des titres des employés. 
+-- 6 Afficher les différentes valeurs des titres des employés dont le titre est secrétaire. 
 
 SELECT `nom` , `noemp` , `nodep` FROM `employe` WHERE `titre` = 'secretaire'
 
