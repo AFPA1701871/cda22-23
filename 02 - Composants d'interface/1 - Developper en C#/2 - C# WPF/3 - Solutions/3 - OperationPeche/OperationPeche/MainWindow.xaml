@@ -278,6 +278,7 @@
                         <ComboBox Grid.Column="2" Grid.Row="4" />
                         <Label Grid.Column="0" Grid.Row="5" HorizontalContentAlignment="Right" Content="Commentaire : " />
                         <TextBlock Grid.Column="1" Grid.Row="5" Grid.ColumnSpan="5" Background="#FFD6D1D1"  />
+                        <TextBlock Text="TextBlock" TextWrapping="Wrap"/>
 
                     </Grid>
                 </Grid>

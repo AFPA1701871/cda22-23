@@ -1,0 +1,14 @@
+﻿<Application x:Class="WpfApp2.App"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:local="clr-namespace:WpfApp2"
+             StartupUri="MainWindow.xaml">
+    <Application.Resources>
+
+        <SolidColorBrush x:Key="FondRouge" Color="#FFB44242"/>
+
+        <SolidColorBrush x:Key="FondVert" Color="#FF60BB4C"/>
+        <BitmapImage x:Key="Croissants" CreateOptions="IgnoreImageCache" CacheOption="OnLoad" UriSource="U:\GRP-14\Reference\02 - Composants d'interface\1 - Developper en C#\2 - C# WPF\Exemples\WpfApp2\WpfApp2\croissant2.jpg"/>
+
+    </Application.Resources>
+</Application>
