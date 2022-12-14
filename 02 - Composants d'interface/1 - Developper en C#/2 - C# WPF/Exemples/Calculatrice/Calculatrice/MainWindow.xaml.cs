@@ -22,6 +22,7 @@ namespace Calculatrice
     {
         Double op1, op2, resultat;
         string op = "";
+        int nbEgal = 0;
 
 
         public MainWindow()
@@ -32,12 +33,12 @@ namespace Calculatrice
         private void Button_Num_Click(object sender, RoutedEventArgs e)
         {
             saisie.Text += ((Button)sender).Content;
-            historique.Text += ((Button)sender).Content;
+            // historique.Text += ((Button)sender).Content;
         }
         private void Button_PlusMoins_Click(object sender, RoutedEventArgs e)
         {
             saisie.Text += "-";
-            historique.Text += "-";
+            // historique.Text += "-";
         }
 
 
@@ -54,39 +55,45 @@ namespace Calculatrice
 
         private void Button_Operateur_Click(object sender, RoutedEventArgs e)
         {
+            debug.Text =  "op1 " + op1.ToString() + "op2 " + op2.ToString() + "op " + op + "saisie " + saisie.Text + "histo " + historique.Text;
             if (op != "")
             {
                 if (Calcul())
                 {
                     // si op2 est une vrai opérande, le calcul a réussi
+                    op = (string)((Button)sender).Content;
                     // on met à jour l'historique
-                    historique.Text = resultat.ToString();
-                    // on met à jour la saisie pour permettre la mise à jour de op1 ligne 71
-                    saisie.Text = resultat.ToString();
+                    historique.Text += saisie.Text + op;
+                    op1 = resultat;
+                    saisie.Text = "";
                 }
                 else
                 {
                     // si op2 est un autre opérateur
-                    // on retire l'operateur précédent et on recharge la saisie pour permettre la mise à jour de op1 ligne 71
-                    historique.Text = historique.Text.Remove(historique.Text.Length - 1);
                     saisie.Text = op1.ToString();
                 }
 
             }
-            op1 = Double.Parse(saisie.Text);
-            op = (string)((Button)sender).Content;
-            saisie.Text = "";
-            historique.Text += op;
+            else
+            {
+                op1 = Double.Parse(saisie.Text);
+                op = (string)((Button)sender).Content;
+                historique.Text += saisie.Text + op;
+                saisie.Text = "";
+            }
+
         }
 
-        
+
 
         private void Button_Egal_Click(object sender, RoutedEventArgs e)
         {
             if (Calcul())
             {
-                historique.Text += "= " + resultat;
+                historique.Text += saisie.Text + "= " + resultat;
                 saisie.Text = resultat.ToString();
+                op2 = 0;
+                op1 = 0;
             }
         }
         private bool Calcul()
