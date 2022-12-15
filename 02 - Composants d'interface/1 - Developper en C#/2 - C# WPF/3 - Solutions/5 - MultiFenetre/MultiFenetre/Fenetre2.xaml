@@ -20,7 +20,7 @@
             <ColumnDefinition Width="63*"/>
         </Grid.ColumnDefinitions>
 
-        <Label x:Name="lblMot" Content="Fenetre 2"  FontSize="25" Grid.Column="1" Grid.Row="1"/>
+        <TextBox x:Name="lblMot" Text="Fenetre 2"  FontSize="25" Grid.Column="1" Grid.Row="1"/>
         <Button x:Name="btnRetour" Grid.Column="1" Grid.Row="3" Click="btnRetour_Click" Content="Retour" />
      
     </Grid>

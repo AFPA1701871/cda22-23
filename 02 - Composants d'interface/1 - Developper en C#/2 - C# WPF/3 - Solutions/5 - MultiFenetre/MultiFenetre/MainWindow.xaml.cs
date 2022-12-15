@@ -31,10 +31,10 @@ namespace MultiFenetre
         {
             Fenetre2 f = new Fenetre2(tbxMot.Text, this);
             this.Opacity = 0.7;
-            this.Visibility = Visibility.Hidden;
+            //this.Visibility = Visibility.Hidden;
             f.ShowDialog();
 
-            this.Visibility = Visibility.Visible;
+            //this.Visibility = Visibility.Visible;
             this.Opacity = 1;
 
         }

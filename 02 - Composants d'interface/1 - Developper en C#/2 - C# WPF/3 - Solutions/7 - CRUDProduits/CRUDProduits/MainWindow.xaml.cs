@@ -1,4 +1,5 @@
-﻿using System;
+﻿
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -13,7 +14,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace Datasource
+namespace CRUDProduits
 {
     /// <summary>
     /// Logique d'interaction pour MainWindow.xaml
@@ -25,23 +26,20 @@ namespace Datasource
             InitializeComponent();
             RemplirGrid();
         }
-        public void RemplirGrid()
+        private void RemplirGrid()
         {
-            dgProduits.ItemsSource = CreerListe();
+            listeProduits.ItemsSource = ProduitsService.ListeProduits();
         }
 
-        private List<Produits> CreerListe()
+        private void Row_DoubleClick(object sender, EventArgs e)
         {
-            List<Produits> liste = new List<Produits>();
+           Produits item = (Produits) ((DataGridRow)sender).Item;
 
-            for (int i = 1; i < 15; i++)
-            {
-                Produits p = new Produits(i, "Produit" + i, i * 2);
-                liste.Add(p);
-            }
-
-            liste.Dump();
-            return liste;
+            Window w = new Detail(item, this);
+            w.ShowDialog();
+            RemplirGrid();
         }
+
+
     }
 }

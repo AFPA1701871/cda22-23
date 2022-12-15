@@ -25,13 +25,13 @@ namespace MultiFenetre
         public Fenetre2(string mot, Mainwindow w)
         {
             InitializeComponent();
-            lblMot.Content = mot;
+            lblMot.Text = mot;
             fenetreMere = w;
         }
 
         private void btnRetour_Click(object sender, RoutedEventArgs e)
         {
-            fenetreMere.MAJRetour("test");
+            fenetreMere.MAJRetour(lblMot.Text);
             this.Close();
         }
     }
