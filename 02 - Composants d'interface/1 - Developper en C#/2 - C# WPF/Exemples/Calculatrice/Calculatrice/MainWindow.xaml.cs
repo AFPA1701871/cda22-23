@@ -34,8 +34,8 @@ namespace Calculatrice
         {
             string content = ((Button)sender).Content.ToString();
             if (! // on veut la condition inverse
-                (content=="," // on appuie sur ,
-                && 
+                (content == "," // on appuie sur ,
+                &&
                 saisie.Text.Contains(",")) // il y a déjà une ,
                 )
             {
@@ -57,8 +57,16 @@ namespace Calculatrice
         }
         private void Button_PlusMoins_Click(object sender, RoutedEventArgs e)
         {
-            saisie.Text += "-";
-            // historique.Text += "-";
+            if (!saisie.Text.Contains("-"))
+            {
+                // on ajoute le - en 1er
+                saisie.Text = "-" + saisie.Text;
+            }
+            else
+            {
+                // la 2eme fois, on enleve le -
+                saisie.Text = saisie.Text.Remove(0, 1);
+            }
         }
 
 
@@ -76,13 +84,13 @@ namespace Calculatrice
 
         private void Button_Operateur_Click(object sender, RoutedEventArgs e)
         {
-            debug.Text =  "op1 " + op1.ToString() + "op2 " + op2.ToString() + "op " + op + "saisie " + saisie.Text + "histo " + historique.Text;
+            debug.Text = "op1 " + op1.ToString() + "op2 " + op2.ToString() + "op " + op + "saisie " + saisie.Text + "histo " + historique.Text;
             if (op != "")
             {
                 if (Calcul())
                 {// si op2 est une vrai opérande, le calcul a réussi
-                        op = (string)((Button)sender).Content;
-                        
+                    op = (string)((Button)sender).Content;
+
                     if (nbEgal == 1)
                     {
                         // on vide l'historique
@@ -90,17 +98,17 @@ namespace Calculatrice
                         nbEgal = 0;
                     }
                     else
-                    { 
+                    {
                         // on met à jour l'historique
                         historique.Text += saisie.Text + op;
                     }
                     op1 = resultat;
-                        saisie.Text = "";
+                    saisie.Text = "";
                 }
                 else
                 {
                     // si op2 est un autre opérateur
-                    historique.Text = historique.Text.Remove(historique.Text.Length-1);
+                    historique.Text = historique.Text.Remove(historique.Text.Length - 1);
                     historique.Text += (string)((Button)sender).Content;
                     op = (string)((Button)sender).Content;
                 }
