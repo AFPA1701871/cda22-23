@@ -32,8 +32,19 @@ namespace Calculatrice
 
         private void Button_Num_Click(object sender, RoutedEventArgs e)
         {
-            saisie.Text += ((Button)sender).Content;
-            // historique.Text += ((Button)sender).Content;
+            if (nbEgal == 0)
+            {
+                // cas général
+                saisie.Text += ((Button)sender).Content;
+                // historique.Text += ((Button)sender).Content;
+            }
+            else
+            {
+                // il vient d'y avoir un égal, on remplace le resultat de l'opération précedente
+                nbEgal = 0;
+                saisie.Text = ((Button)sender).Content.ToString();
+                historique.Text = "";
+            }
         }
         private void Button_PlusMoins_Click(object sender, RoutedEventArgs e)
         {
@@ -49,6 +60,7 @@ namespace Calculatrice
             op2 = 0;
             saisie.Text = "";
             historique.Text = "";
+            nbEgal = 0;
         }
 
 
@@ -59,18 +71,29 @@ namespace Calculatrice
             if (op != "")
             {
                 if (Calcul())
-                {
-                    // si op2 est une vrai opérande, le calcul a réussi
-                    op = (string)((Button)sender).Content;
-                    // on met à jour l'historique
-                    historique.Text += saisie.Text + op;
+                {// si op2 est une vrai opérande, le calcul a réussi
+                        op = (string)((Button)sender).Content;
+                        
+                    if (nbEgal == 1)
+                    {
+                        // on vide l'historique
+                        historique.Text = saisie.Text + op;
+                        nbEgal = 0;
+                    }
+                    else
+                    { 
+                        // on met à jour l'historique
+                        historique.Text += saisie.Text + op;
+                    }
                     op1 = resultat;
-                    saisie.Text = "";
+                        saisie.Text = "";
                 }
                 else
                 {
                     // si op2 est un autre opérateur
-                    saisie.Text = op1.ToString();
+                    historique.Text = historique.Text.Remove(historique.Text.Length-1);
+                    historique.Text += (string)((Button)sender).Content;
+                    op = (string)((Button)sender).Content;
                 }
 
             }
@@ -88,12 +111,25 @@ namespace Calculatrice
 
         private void Button_Egal_Click(object sender, RoutedEventArgs e)
         {
-            if (Calcul())
+            if (nbEgal == 1)
             {
-                historique.Text += saisie.Text + "= " + resultat;
-                saisie.Text = resultat.ToString();
+                // on vide l'historique
+                historique.Text = saisie.Text;
+                op1 = Double.Parse(saisie.Text);
+                op = "";
                 op2 = 0;
-                op1 = 0;
+                nbEgal = 0;
+            }
+            else
+            {
+                if (Calcul())
+                {
+                    nbEgal++;
+                    historique.Text += saisie.Text + "= " + resultat;
+                    saisie.Text = resultat.ToString();
+                    op2 = 0;
+                    op1 = 0;
+                }
             }
         }
         private bool Calcul()
