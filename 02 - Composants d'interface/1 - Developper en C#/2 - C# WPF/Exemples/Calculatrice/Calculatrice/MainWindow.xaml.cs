@@ -32,19 +32,28 @@ namespace Calculatrice
 
         private void Button_Num_Click(object sender, RoutedEventArgs e)
         {
-            if (nbEgal == 0)
+            string content = ((Button)sender).Content.ToString();
+            if (! // on veut la condition inverse
+                (content=="," // on appuie sur ,
+                && 
+                saisie.Text.Contains(",")) // il y a déjà une ,
+                )
             {
-                // cas général
-                saisie.Text += ((Button)sender).Content;
-                // historique.Text += ((Button)sender).Content;
+                if (nbEgal == 0)
+                {
+                    // cas général
+                    saisie.Text += content;
+                    // historique.Text += ((Button)sender).Content;
+                }
+                else
+                {
+                    // il vient d'y avoir un égal, on remplace le resultat de l'opération précedente
+                    nbEgal = 0;
+                    saisie.Text = content;
+                    historique.Text = "";
+                }
             }
-            else
-            {
-                // il vient d'y avoir un égal, on remplace le resultat de l'opération précedente
-                nbEgal = 0;
-                saisie.Text = ((Button)sender).Content.ToString();
-                historique.Text = "";
-            }
+            // sinon on ignore la frappe sur ,
         }
         private void Button_PlusMoins_Click(object sender, RoutedEventArgs e)
         {
