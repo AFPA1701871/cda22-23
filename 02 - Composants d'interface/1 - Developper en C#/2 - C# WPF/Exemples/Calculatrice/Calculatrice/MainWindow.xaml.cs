@@ -168,6 +168,11 @@ namespace Calculatrice
                         resultat = op1 * op2;
                         break;
                     case "/":
+                        if (op2 == 0)
+                        {
+                            saisie.Text = "";
+                            return false; // gestion de la division par 0
+                        }
                         resultat = op1 / op2;
                         break;
                     default:
