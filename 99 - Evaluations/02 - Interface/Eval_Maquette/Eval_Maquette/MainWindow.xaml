@@ -7,8 +7,8 @@
         mc:Ignorable="d"
         Title="MainWindow" Height="750" Width="1200" MinHeight="700" MinWidth="1000">
     <Window.Resources>
-        <BitmapImage x:Key="cross" CreateOptions="IgnoreImageCache" CacheOption="OnLoad" UriSource="C:\Users\1701871\Documents\GIT CDA 22-23\_Reference\99 - Evaluations\02 - Interface\Eval_Maquette\Eval_Maquette\corss.png"/>
-        <BitmapImage x:Key="check" CreateOptions="IgnoreImageCache" CacheOption="OnLoad" UriSource="C:\Users\1701871\Documents\GIT CDA 22-23\_Reference\99 - Evaluations\02 - Interface\Eval_Maquette\Eval_Maquette\checkmark-png-5.png"/>
+        <BitmapImage x:Key="cross" CreateOptions="IgnoreImageCache" CacheOption="OnLoad" UriSource="cross.png"/>
+        <BitmapImage x:Key="check" CreateOptions="IgnoreImageCache" CacheOption="OnLoad" UriSource="checkmark-png-5.png"/>
     </Window.Resources>
     <!--responsive tant que la police et le Calendar le permettent-->
     <Grid Background="AliceBlue">
