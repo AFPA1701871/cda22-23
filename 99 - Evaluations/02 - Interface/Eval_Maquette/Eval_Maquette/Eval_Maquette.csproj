@@ -95,7 +95,7 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="corss.png" />
+    <Resource Include="cross.png" />
   </ItemGroup>
   <ItemGroup>
     <Resource Include="checkmark-png-5.png" />
