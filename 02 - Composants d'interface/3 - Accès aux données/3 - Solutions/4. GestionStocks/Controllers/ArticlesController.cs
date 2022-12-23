@@ -46,6 +46,7 @@ namespace GestionStocks.Controllers
             IEnumerable<Article> listeArticles = _service.GetAllArticles();
             return _mapper.Map<IEnumerable<ArticlesDTO>>(listeArticles);
         }
+       
 
         [HttpGet]
         public IEnumerable<ArticlesDTOAvecLibelleCategorie> GetAllArticlesAvecLibelleCateg()
