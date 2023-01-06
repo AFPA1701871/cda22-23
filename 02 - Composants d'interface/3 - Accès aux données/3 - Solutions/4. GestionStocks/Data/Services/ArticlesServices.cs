@@ -45,7 +45,7 @@ namespace GestionStocks.Data.Services
         
         public Article GetArticleById(int id)
         {
-            return _context.Articles.Include("Categorie").FirstOrDefault(obj => obj.IdArticle == id);
+           return _context.Articles.Include("Categorie").FirstOrDefault(obj => obj.IdArticle == id); 
         }
 
         public Article GetArticleByLibelle(string libelle)

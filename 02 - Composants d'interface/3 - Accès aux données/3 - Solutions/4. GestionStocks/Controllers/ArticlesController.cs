@@ -15,6 +15,7 @@ using System.Threading.Tasks;
 namespace GestionStocks.Controllers
 {
     [Route("api/[controller]")]
+    // équivalent à [Route("api/ArticlesController")]
     [ApiController]
     class ArticlesController:ControllerBase
     {
@@ -44,6 +45,7 @@ namespace GestionStocks.Controllers
         public IEnumerable<ArticlesDTO> GetAllArticles()
         {
             IEnumerable<Article> listeArticles = _service.GetAllArticles();
+            // on transforme la liste d'articles en liste d'articles DTO
             return _mapper.Map<IEnumerable<ArticlesDTO>>(listeArticles);
         }
        
@@ -59,10 +61,10 @@ namespace GestionStocks.Controllers
         [HttpGet("{id}", Name = "GetArticleById")]
         public ActionResult<ArticlesDTO> GetArticleById(int id)
         {
-            Article commandItem = _service.GetArticleById(id);
-            if (commandItem != null)
+            Article articleItem = _service.GetArticleById(id);
+            if (articleItem != null)
             {
-                return Ok(_mapper.Map<ArticlesDTO>(commandItem));
+                return Ok(_mapper.Map<ArticlesDTO>(articleItem));
             }
             return NotFound();
         }
@@ -79,6 +81,8 @@ namespace GestionStocks.Controllers
         {
             Article obj = _mapper.Map<Article>(objIn);
             _service.AddArticle(obj);
+            // permet d'aller rechercher l'article créé
+            // appel de la méthode GetArticleById par le name préciser ligne 61
             return CreatedAtRoute(nameof(GetArticleById), new { Id = obj.IdArticle }, obj);
         }
 

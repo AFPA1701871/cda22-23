@@ -115,11 +115,12 @@ namespace GestionStocks
 
         public void Retour(object sender, RoutedEventArgs e)
         {
-            this.Close();
+            this.Retour();
         }
 
         public void Retour()
         {
+            // ajouter une animation à la fermeture
             this.Close();
         }
     }

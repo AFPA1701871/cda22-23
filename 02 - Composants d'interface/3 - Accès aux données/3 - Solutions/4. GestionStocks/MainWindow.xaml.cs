@@ -36,8 +36,7 @@ namespace GestionStocks
             _context = new MyDbContext();
             _articlesController = new ArticlesController(_context);
             // On rempli la datagrid
-            ListeArticles.ItemsSource = _articlesController.GetAllArticlesAvecLibelleCateg();
-
+            ActualiserTableau();
         }
 
         /// <summary>
@@ -49,6 +48,7 @@ namespace GestionStocks
         {
             // On récupère l'article selectionné
             ArticlesDTOAvecLibelleCategorie article = (ArticlesDTOAvecLibelleCategorie)ListeArticles.SelectedItem;
+            // on récupère le nom du bouton cliqué
             string nom = (string)((Button)sender).Content;
             // Si pas d'article sélectionné et click sur le bouton modifier ou supprimer, on affiche un message d'erreur
             if (article == null && (nom == "Modifier" || nom == "Supprimer"))
