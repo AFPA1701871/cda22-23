@@ -45,8 +45,15 @@ namespace EF_Relations.Data.Services
             // _context.Produits.Include("Contenus").ToList();
             // correspond à Select * from produits inner join contenus on produit.idProduit = contenus.idProduit (clé primaire double dans Contenu
             return _context.Produits.Include(p=>p.Contenus).ThenInclude(c=>c.Cde).ToList();
-        //    return _context.Produits.Include("Contenus.Cde").ToList();
-          //  return _context.Produits.Include("Contenus").ToList();
+
+            //  2eme version possible 
+            //   return _context.Produits.Include("Contenus.Cde").ToList();
+
+            // possibilité d'ajouter une clause where 
+           // return _context.Produits.Where(p => p.IdProduit > 2).Include(p => p.Contenus).ThenInclude(c => c.Cde).ToList();
+
+            // version sans remplir CDE
+            // return _context.Produits.Include("Contenus").ToList();
         }
 
         public Produit GetProduitById(int id)
